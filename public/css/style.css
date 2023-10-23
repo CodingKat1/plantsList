@@ -1,3 +1,45 @@
-h1{
-    color: red;
+body {
+    background-color: #000000;
+}
+
+
+h1, h2{
+    color: #0a780a;
+}
+
+span {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+table {
+    border-collapse: collapse;
+    background: linear-gradient(to bottom, #000000, #0a780a);
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 10px;
+}
+
+th {
+    color: #0a780a;
+    font-size: 25px;
+    padding-right: 30px;
+}
+
+td {
+    
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border: 2px solid #ffffff;
+    background-color: #04aa6d;
+    color: #ffffff;
+    border-radius: 5px;
+    float: left;
 }

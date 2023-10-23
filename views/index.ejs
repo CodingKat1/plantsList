@@ -18,24 +18,30 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Current Rappers</h1>
-    <ul class="rappers">
-    <% for(let i=0; i < info.length; i++) {%>
-        <li class="rapper">
-            <span><%= info[i].stageName %></span>
-            <span><%= info[i].birthName %></span>
-            <span><%= info[i].likes %></span>
-            <span class='fa fa-thumbs-up'></span>
-            <span class='fa fa-trash'></span>
-        </li>
-    <% } %>
-    </ul>
+    <h1>Plants</h1>
+    <table>
+        <tr>
+            <th>Common Name</th>
+            <th>Botanical Name</th>
+            <th>Likes</th>
+        </tr>
+        <% for(let i=0; i <info.length; i++) {%>
+            <tr>
+                <td><%= info[i].commonName %></td>
+                <td><%= info[i].botanicalName %></td>
+                <td><%= info[i].likes %>
+                    <span class='fa fa-thumbs-up'></span>
+                    <span class='fa fa-thumbs-down'></span>
+                    <span class='fa fa-trash'></span>
+                </td>          
+        <% } %>
+    </table>
 
-    <h2>Add A Rapper:</h2>
+    <h2>Add A Plant:</h2>
 
-    <form action="/addRapper" method="POST">
-        <input type="text" placeholder="Stage Name" name="stageName">
-        <input type="text" placeholder="Birth Name" name="birthName">
+    <form action="/addPlant" method="POST">
+        <input type="text" placeholder="Common Name" name="commonName">
+        <input type="text" placeholder="Botanical Name" name="botanicalName">
         <input type="submit">
     </form>
     

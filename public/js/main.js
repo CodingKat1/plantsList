@@ -1,24 +1,30 @@
 const deleteText = document.querySelectorAll('.fa-trash')
-const thumbText = document.querySelectorAll('.fa-thumbs-up')
+const thumbsUpText = document.querySelectorAll('.fa-thumbs-up')
+const thumbsDownText = document.querySelector('.fa-thumbs-down')
 
 Array.from(deleteText).forEach((element)=>{
-    element.addEventListener('click', deleteRapper)
+    element.addEventListener('click', deletePlant)
 })
 
-Array.from(thumbText).forEach((element)=>{
+Array.from(thumbsUpText).forEach((element)=>{
     element.addEventListener('click', addLike)
 })
 
-async function deleteRapper(){
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
+Array.from(thumbsDownText).forEach((element)=> {
+    element.addEventListener('click', subtractLike)
+})
+
+async function deletePlant(){
+    const row = this.closest('tr')
+    const cName = row.querySelector('td').textContent
+    const bName = row.querySelector('td:nth-child(2)').textContent
     try{
-        const response = await fetch('deleteRapper', {
+        const response = await fetch('deletePlant', {
             method: 'delete',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'stageNameS': sName,
-              'birthNameS': bName
+              'commonNameS': cName,
+              'botanicalNameS': bName
             })
           })
         const data = await response.json()
@@ -31,16 +37,20 @@ async function deleteRapper(){
 }
 
 async function addLike(){
-    const sName = this.parentNode.childNodes[1].innerText
-    const bName = this.parentNode.childNodes[3].innerText
-    const tLikes = Number(this.parentNode.childNodes[5].innerText)
+    const row = this.closest('tr')
+    const cName = row.querySelector('td').textContent
+    const bName = row.querySelector('td:nth-child(2)').textContent
+    const tLikes = Number(row.querySelector('td:nth-child(3)').textContent)
+    // const cName = this.parentNode.childNodes[1].innerText
+    // const bName = this.parentNode.childNodes[3].innerText
+    // const tLikes = Number(this.parentNode.childNodes[5].innerText)
     try{
         const response = await fetch('addOneLike', {
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-              'stageNameS': sName,
-              'birthNameS': bName,
+              'commonNameS': cName,
+              'botanicalNameS': bName,
               'likesS': tLikes
             })
           })
