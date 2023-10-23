@@ -61,3 +61,27 @@ async function addLike(){
         console.log(err)
     }
 }
+
+async function subtractLike(){
+    const row = this.closest('tr')
+    const cName = row.querySelector('td').textContent
+    const bName = row.querySelector('td:nth-child(2)').textContent
+    const tLikes = Number(row.querySelector('td:nth-child(3)').textContent)
+    try{
+        const response = await fetch('subtractOneLike', {
+            method: 'put',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+              'commonNameS': cName,
+              'botanicalNameS': bName,
+              'likesS': tLikes
+            })
+          })
+        const data = await response.json()
+        console.log(data)
+        location.reload()
+
+    }catch(err){
+        console.log(err)
+    }
+}
