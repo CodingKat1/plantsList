@@ -56,6 +56,23 @@ app.put('/addOneLike', (request, response) => {
 
 })
 
+app.put('/subtractOneLike', (request, response) => {
+    db.collection('plants').updateOne({commonName: request.body.commonNameS, botanicalName: request.body.botanicalNameS,likes: request.body.likesS},{
+        $set: {
+            likes:request.body.likesS - 1
+          }
+    },{
+        sort: {_id: -1},
+        upsert: true
+    })
+    .then(result => {
+        console.log('Subtracted One Like')
+        response.json('Like Subtracted')
+    })
+    .catch(error => console.error(error))
+
+})
+
 app.delete('/deletePlant', (request, response) => {
     db.collection('plants').deleteOne({commonName: request.body.commonNameS})
     .then(result => {
