@@ -24,7 +24,6 @@ async function deletePlant(){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
               'commonNameS': cName,
-              'botanicalNameS': bName
             })
           })
         const data = await response.json()
