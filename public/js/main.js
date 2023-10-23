@@ -1,6 +1,6 @@
 const deleteText = document.querySelectorAll('.fa-trash')
 const thumbsUpText = document.querySelectorAll('.fa-thumbs-up')
-const thumbsDownText = document.querySelector('.fa-thumbs-down')
+const thumbsDownText = document.querySelectorAll('.fa-thumbs-down')
 
 Array.from(deleteText).forEach((element)=>{
     element.addEventListener('click', deletePlant)
